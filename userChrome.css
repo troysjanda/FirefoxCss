@@ -1,0 +1,168 @@
+/* Start of the custom rules for Firefox */
+@-moz-document url(chrome://browser/content/browser.xhtml) {
+	
+    /* REMOVE URL RESULT PADDING START */
+	
+    .urlbarView {
+        margin-inline: 0 !important;
+        width: 100% !important;
+    }
+
+    .urlbarView-row {
+        padding-block: 0 !important;
+    }
+	
+    /* REMOVE URL RESULT PADDING END */
+
+
+.titlebar-spacer[type="pre-tabs"] { width: 0 !important; } /* Firefox 65+ */
+
+    /* MOVE URL RESULT TYPE ICON TO LEFT START */
+	
+    .urlbarView-type-icon {
+        min-width: 16px !important;
+        height: 16px !important;
+        margin-bottom: 0 !important;
+        margin-inline-start: 0 !important;
+    }
+
+    .urlbarView-favicon {
+        margin-inline-start: 20px !important;
+    }
+
+navigator-toolbox, #TabsToolbar {
+    --toolbarbutton-inner-padding: calc((var(--tab-min-height) - 28px) / 2) !important;
+}
+
+#star-button-box {display:none !important;}}
+
+
+/* Bookmarkbar less compact */
+
+#PersonalToolbar .toolbarbutton-1, toolbarbutton.bookmark-item:not(.subviewbutton){
+    border-radius: 100px !important;
+    padding: 7px 8px !important;
+    margin: 0 0 4px 0 !important;
+}
+
+/* Remove unnecessary padding that was not there before */
+
+.tabbrowser-tab {
+    padding-inline: 0px !important;
+}
+
+/* Start proton tab modes */
+
+/* Remove space to left of toolbar  */
+
+.titlebar-spacer[type="pre-tabs"] {
+    display: none !important;
+}
+
+/* Apply dimmed background for inactive tabs */
+
+.tabbrowser-tab:hover>.tab-stack>.tab-background:not([selected=true], [multiselected]) {
+    background-color: color-mix(in srgb, currentColor 12%, transparent);
+}
+
+.tabbrowser-tab>.tab-stack>.tab-background:not([selected=true], [multiselected]) {
+    background-color: color-mix(in srgb, currentColor 6%, transparent);
+}
+
+/* Hide tab close button */
+
+#TabsToolbar .close-icon {
+    display: none !important;
+} 
+
+/* Unhide the tab close button on hover when it is the selected tab and not pinned */
+
+#TabsToolbar .tabbrowser-tab:hover .close-icon {
+    display: inline-block !important;
+}
+
+/* Reduce spacing between pinned and regular tabs */
+
+#tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab[first-visible-unpinned-tab] { margin-inline-start: initial !important; }
+
+/* End Proton Tab Mods
+
+/*** Proton Tabs Tweaks ***/
+
+/* Adjust tab corner shape, optionally remove space below tabs */
+
+#tabbrowser-tabs {
+    --lwt-user-tab-rounding: 8px;
+}
+@media (-moz-proton) { 
+    .tab-background {
+        border-radius: var(--user-tab-rounding) !important;
+    }
+}
+
+/* Inactive tabs: Outline style */
+
+@media (-moz-proton) {
+    .tabbrowser-tab:not([selected=true]):not([multiselected=true]) .tab-background {
+        border: 1px solid rgba(0, 0, 0, .20) !important;
+    }
+    /* For dark backgrounds */
+    [brighttext="true"] .tabbrowser-tab:not([selected=true]):not([multiselected=true]) .tab-background {
+        border: 1px solid var(--lwt-selected-tab-background-color, rgba(255, 255, 255, .20)) !important;
+    }
+    /* Remove extra padding between tabs */
+    .tabbrowser-tab:not(:first-of-type) {
+        padding-left: 0 !important;
+    }
+}
+
+/*** Tighten up drop-down/context/popup menu spacing ***/
+
+menupopup > menuitem, menupopup > menu {
+  padding-block: 4px !important;
+}
+:root {
+  --arrowpanel-menuitem-padding: 6px 8px !important;
+}
+#tracking-protection-icon-container {display: none !important;}
+
+:root {
+  --focus-outline-color: transparent !important;
+}
+
+.tabbrowser-tab{
+  padding-inline: 1.5px !important;
+}
+
+#main-menubar > menu[_moz-menuactive="true"] {
+  background-color: rgba(0,0,0,0.1) !important;
+}
+/*new urlbar note: #urlbar-input-container changed to .urlbar-input-container */
+.urlbar-input-container { background-color: #fff !important; border: 1px solid hsla(240,5%,5%,.25) !important;}
+
+/* disable display for one off searches */
+#urlbar .search-one-offs { display:none !important;}
+
+#alltabs-button {
+    display: none !important;
+}
+
+/* addons jgsaw Icon */
+#unified-extensions-view .panel-header,
+#unified-extensions-view .panel-header + toolbarseparator
+{
+  display: none !important;
+}
+#unified-extensions-button .toolbarbutton-icon {
+  list-style-image: url("chrome://global/skin/icons/chevron.svg") !important;
+}
+/* Translate */
+#pageAction-urlbar-_036a55b4-5e72-4d05-a06c-cba2dfcc134a_{
+display: none !important;
+}
+/* Remove shadow and border from urlbar */
+#urlbar-background, #searchbar { border: none !important }
+#urlbar-background, #searchbar { box-shadow: none !important }
+.tabbrowser-tab:not([pinned]){ margin-inline-start: 0 !important }
+
+	}
