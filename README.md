@@ -3,10 +3,10 @@ This is my personal userechrome file for Firefox.
 
 # How to use
 
-You need to have Firefox installed and the initial profile created.
-Need to have toolkit.legacyUserProfileCustomizations.stylesheets = True in about:config
-Need to create a folder in your Firefox Profile folder called chrome
-Need to place this file in that folder and close and reopen Firefox
+1) You need to have Firefox installed and the initial profile created.
+2) Need to have toolkit.legacyUserProfileCustomizations.stylesheets = True in about:config
+3) Need to create a folder in your Firefox Profile folder called chrome
+4) Need to place this file in that folder and close and reopen Firefox
 
 
 # Disclaimer
