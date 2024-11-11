@@ -1,4 +1,5 @@
-/* Start of the custom rules for Firefox */
+/* Start of the custom rules for Firefox
+Version 1.0.1a */
 @-moz-document url(chrome://browser/content/browser.xhtml) {
 	
     /* REMOVE URL RESULT PADDING START */
