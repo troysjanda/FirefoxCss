@@ -13,3 +13,7 @@ This is my personal userechrome file for Firefox.
 
 Please read over the contents od the file as make sure you want to add it to Firefox, I take no responcibility if something goes wrong.
 This is my personal file that I use that cleans up and removes the Un-Awesome bar as well as other annoying items.
+
+# Screenshot
+
+![Firefoxbrowser](https://github.com/user-attachments/assets/e7f810ff-defe-4ac5-aa37-c2d5de81bb6d)
