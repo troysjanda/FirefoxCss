@@ -1,9 +1,32 @@
-/* Start of the custom rules for Firefox
-Version 1.0.1a */
-@-moz-document url(chrome://browser/content/browser.xhtml) {
-	
+  /* REMOVE MEGABAR START
+ * VERSION 1.0.7
+ * CODE AT: http://userchrome.wesleybranton.com/megabar
+ * RELEASE NOTES: http://userchrome.wesleybranton.com/notes/megabar */
+@-moz-document url(chrome://browser/content/browser.xul),
+               url(chrome://browser/content/browser.xhtml) {
+				   
+    /* DISABLE EXPANDING START */
+    #urlbar[breakout][breakout-extend] {
+        top: calc(var(--urlbar-container-height) * 2 - var(--urlbar-height)) !important;
+        width: var(--urlbar-width) !important;
+        position: relative !important;
+        margin: 0 !important;
+    }
+    
+    #urlbar[breakout][breakout-extend] > #urlbar-input-container,
+    #urlbar[breakout][breakout-extend] > .urlbar-input-container {
+        height: var(--urlbar-height) !important;
+        padding-block: 0 !important;
+        padding-inline: var(--urlbar-container-padding) !important;
+    }
+    
+    #urlbar[breakout][breakout-extend] > #urlbar-background {
+        animation-name: none !important;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, .05) !important;
+    }
+    /* DISABLE EXPANDING END */
+    
     /* REMOVE URL RESULT PADDING START */
-	
     .urlbarView {
         margin-inline: 0 !important;
         width: 100% !important;
@@ -12,56 +35,77 @@ Version 1.0.1a */
     .urlbarView-row {
         padding-block: 0 !important;
     }
-	
     /* REMOVE URL RESULT PADDING END */
-
-
-.titlebar-spacer[type="pre-tabs"] { width: 0 !important; } /* Firefox 65+ */
-
-    /* MOVE URL RESULT TYPE ICON TO LEFT START */
 	
-    .urlbarView-type-icon {
-        min-width: 16px !important;
-        height: 16px !important;
-        margin-bottom: 0 !important;
-        margin-inline-start: 0 !important;
-    }
-
-    .urlbarView-favicon {
-        margin-inline-start: 20px !important;
-    }
-
-navigator-toolbox, #TabsToolbar {
+	navigator-toolbox, #TabsToolbar {
     --toolbarbutton-inner-padding: calc((var(--tab-min-height) - 28px) / 2) !important;
 }
 
-#star-button-box {display:none !important;}}
-
-
 /* Bookmarkbar less compact */
-
 #PersonalToolbar .toolbarbutton-1, toolbarbutton.bookmark-item:not(.subviewbutton){
     border-radius: 100px !important;
     padding: 7px 8px !important;
     margin: 0 0 4px 0 !important;
 }
+    
+    /* MOVE URL RESULT TYPE ICON TO LEFT START */
+    .urlbarView-type-icon {
+        min-width: 16px !important;
+        height: 16px !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        margin-inline-start: 0 !important;
+    }
+    
+    .urlbarView-favicon {
+        margin-inline-start: 20px !important;
+    }
+    /* MOVE URL RESULT TYPE ICON TO LEFT END */
 
-/* Remove unnecessary padding that was not there before */
+    /* DISPLAY GO BUTTON WHEN TYPING START */
+    #urlbar-input-container[pageproxystate="invalid"] #urlbar-go-button {
+        display: block !important;
+    }
+    /* DISPLAY GO BUTTON WHEN TYPING END */
 
-.tabbrowser-tab {
-    padding-inline: 0px !important;
+    /* ALWAYS SHOW PAGE ACTIONS START */
+    /* DISABLED BY DEFAULT - UNCOMMENT TO ENABLE */
+    /*#pageActionButton {
+        display: block !important;
+        visibility: visible !important;
+    }*/
+    /* ALWAYS SHOW PAGE ACTIONS END */
+}
+/* REMOVE MEGABAR END */
+
+/* Remove Firefox View */
+#firefox-view-button {
+  display: none !important;
+}
+
+/* Remove sound Icon, keep Favicon */
+.tab-icon-image{ opacity: 1 !important; }
+.tab-icon-overlay{ display: none }
+
+/* Remove the Bookmark Star Icon */
+#star-button-box {
+opacity: 0 !important;
+max-width: .1px !important;
+padding: 0px !important;
+}
+
+/* get rid of the PLAYING, MUTED, etc. labels on audio tabs */
+.tab-secondary-label:is([soundplaying], [muted], [activemedia-blocked], [pictureinpicture]) {
+    display: none !important;
 }
 
 /* Start proton tab modes */
-
 /* Remove space to left of toolbar  */
-
 .titlebar-spacer[type="pre-tabs"] {
     display: none !important;
 }
 
 /* Apply dimmed background for inactive tabs */
-
 .tabbrowser-tab:hover>.tab-stack>.tab-background:not([selected=true], [multiselected]) {
     background-color: color-mix(in srgb, currentColor 12%, transparent);
 }
@@ -71,19 +115,16 @@ navigator-toolbox, #TabsToolbar {
 }
 
 /* Hide tab close button */
-
 #TabsToolbar .close-icon {
     display: none !important;
 } 
 
 /* Unhide the tab close button on hover when it is the selected tab and not pinned */
-
 #TabsToolbar .tabbrowser-tab:hover .close-icon {
     display: inline-block !important;
 }
 
 /* Reduce spacing between pinned and regular tabs */
-
 #tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab[first-visible-unpinned-tab] { margin-inline-start: initial !important; }
 
 /* End Proton Tab Mods
@@ -117,6 +158,8 @@ navigator-toolbox, #TabsToolbar {
     }
 }
 
+/* Tweak Options as of 6/05/2021; Generated Wed Jun 09 2021 08:46:26 GMT-0700 (Pacific Daylight Time) */
+
 /*** Tighten up drop-down/context/popup menu spacing ***/
 
 menupopup > menuitem, menupopup > menu {
@@ -148,7 +191,7 @@ menupopup > menuitem, menupopup > menu {
     display: none !important;
 }
 
-/* addons jgsaw Icon */
+/* addons jgsaw shit */
 #unified-extensions-view .panel-header,
 #unified-extensions-view .panel-header + toolbarseparator
 {
@@ -162,8 +205,11 @@ menupopup > menuitem, menupopup > menu {
 display: none !important;
 }
 /* Remove shadow and border from urlbar */
+
 #urlbar-background, #searchbar { border: none !important }
+
 #urlbar-background, #searchbar { box-shadow: none !important }
+
 .tabbrowser-tab:not([pinned]){ margin-inline-start: 0 !important }
 
-	}
+}
